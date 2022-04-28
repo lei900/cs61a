@@ -1,3 +1,40 @@
+from os import times
+
+def add_in_range(start, stop):
+    """
+    >>> add_in_range(3, 5)  # .Case 1
+    12
+    >>> add_in_range(1, 10)  # .Case 2
+    55
+    """
+    "*** YOUR CODE HERE ***"
+    sum = 0
+    while start <= stop:
+        sum = sum + start
+        start += 1
+
+    return sum
+
+def digit_pos_match(n, k):
+    """
+    >>> digit_pos_match(980, 0) # .Case 1
+    True
+    >>> digit_pos_match(980, 2) # .Case 2
+    False
+    >>> digit_pos_match(98276, 2) # .Case 3
+    True
+    >>> digit_pos_match(98276, 3) # .Case 4
+    False
+    """
+    "*** YOUR CODE HERE ***"
+    n = n // (10 ** k)
+    kth_digit = n % 10
+    if kth_digit == k:
+        return True
+    else:
+        return False
+
+
 def falling(n, k):
     """Compute the falling factorial of n to depth k.
 
@@ -61,8 +98,36 @@ def double_eights(n):
       if last_digit == 8 and pre_eight:
           return True
       elif last_digit == 8:
-         pre_eight = True
+          pre_eight = True
       else:
           pre_eight = False
       n = n // 10
     return False
+
+def k_occurrence(k, num):
+    """Complete k_occurrence, a function which returns the number 
+    of times the digit k appears in num. 
+    0 is considered to have no digits.
+    >>> k_occurrence(5, 10)  # .Case 1
+    0
+    >>> k_occurrence(5, 5115)  # .Case 2
+    2
+    >>> k_occurrence(0, 100)  # .Case 3
+    2
+    >>> k_occurrence(0, 0)  # .Case 4
+    0
+    """
+    "*** YOUR CODE HERE ***"
+    count = 0
+    if num == 0:
+        return 0
+
+    while num > 0:
+        digit = num % 10
+    
+        if digit == k:
+          count += 1
+
+        num = num // 10
+    return count
+
