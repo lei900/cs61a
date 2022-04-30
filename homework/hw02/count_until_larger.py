@@ -1,6 +1,3 @@
-from numpy import kaiser
-
-
 def count_until_larger(num):
     """
     Complete the function count_until_larger that takes in a positive integer num.
