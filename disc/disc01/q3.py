@@ -44,11 +44,12 @@ def cond():
 
 def true_func():
     "*** YOUR CODE HERE ***"
-    print("Welcome")
+    print("Welcome to")
+    return "Welcome to"
 
 def false_func():
     "*** YOUR CODE HERE ***"
     print("61A")
-
+    return "61A"
+    
 print(with_if_function())
-# don't understand why
