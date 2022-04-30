@@ -35,7 +35,7 @@ def count_until_larger(num):
 
     rightmost = num % 10
     count = 0
-    while num:
+    while num:  # bool(0) => False
         if num % 10 > rightmost:
             return count
         num = num // 10
