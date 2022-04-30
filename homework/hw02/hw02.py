@@ -32,7 +32,16 @@ def hailstone(n):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    length = 1
+    while n != 1:
+        print(n)
+        if n % 2 == 0:
+            n = n // 2      # Integer division prevents "1.0" output
+        else:
+            n = n * 3 + 1
+        length += 1
+    print(n)  # print the last number 1
+    return length
 
 def product(n, term):
     """Return the product of the first n terms in a sequence.
