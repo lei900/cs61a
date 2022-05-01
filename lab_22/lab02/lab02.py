@@ -1,3 +1,6 @@
+from re import X
+
+
 def lambda_curry2(func):
     """
     Returns a Curried version of a two-argument function FUNC.
@@ -13,9 +16,13 @@ def lambda_curry2(func):
     >>> lambda_curry2(mod)(123)(10)
     3
     """
-    "*** YOUR CODE HERE ***"
-    return ______
+    # def curried_add(x):
+    #     def add_three(y):
+    #         return func(x,y)
+    #     return add_three
+    # return curried_add
 
+    return lambda arg1: lambda arg2: func(arg1,arg2)
 
 def lambda_curry2_syntax_check():
     """Checks that definition of lambda_curry2 is just a return statement.
@@ -56,6 +63,15 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def counter(n):
+        i = 1
+        count = 0
+        while i <= n:
+            if condition(n,i):
+                count += 1
+            i += 1
+        return count
+    return counter
 
 
 def composer(f, g):
@@ -91,7 +107,11 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
+    return lambda x: f(g(x)) == g(f(x))
 
+    # def identity(x):
+    #     return composer(f,g)(x) == composer(g,f)(x)
+    # return indentity
 
 def cycle(f1, f2, f3):
     """Returns a function that is itself a higher-order function.
@@ -119,4 +139,26 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
+    def ret_fn(n):
+        def ret(x):
+            i = 0
+            while i < n:
+                if i % 3 == 0:
+                    x = f1(x)
+                elif i % 3 == 1:
+                    x = f2(x)
+                else:
+                    x = f3(x)
+                i += 1
+            return x
+        return ret
+    return ret_fn
+
+    # def ret_fn(n):
+    #     def ret(x):
+    #         if n == 0:
+    #             return x
+    #         return cycle(f2, f3, f1)(n-1)(f1(x))
+    #     return ret
+    # return ret_fn
+
