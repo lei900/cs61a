@@ -14,3 +14,11 @@ def digit_index_factory(num, k):
     -1
     """
     "*** YOUR CODE HERE ***"
+    index = 0
+    while num:
+        if num % 10 == k:
+            return lambda: index
+        num //= 10
+        index += 1
+
+    return lambda: -1
