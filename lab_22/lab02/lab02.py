@@ -1,6 +1,3 @@
-from re import X
-
-
 def lambda_curry2(func):
     """
     Returns a Curried version of a two-argument function FUNC.
