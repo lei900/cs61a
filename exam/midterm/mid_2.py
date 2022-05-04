@@ -26,3 +26,6 @@ def make_mod(n):
     def mod(x):
         return x % n
     return mod
+
+
+lambda f, g: lambda x: f(g(x))
