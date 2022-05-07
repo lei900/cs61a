@@ -1,3 +1,8 @@
+from re import X
+
+from matplotlib.pyplot import step
+
+
 HW_SOURCE_FILE = __file__
 
 
@@ -65,20 +70,60 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
-    if n <= 8:
-        return n
-    else:
-        return pingpong(n-1) - 1
+# iterative solution 1
+#     i = 1
+#     x = 1
+#     is_up = True
+#     while i < n:
+#         is_up = next_dir(is_up, i)
+#         if is_up:
+#             x += 1
+#         else:
+#             x -= 1
+#         i += 1
+#     return x
 
-        count = 0 
-    if num_eights(n-1) > 0 or n % 8 == 0:
-        count += 1
-        if count % 2 == 0:
+# def next_dir(is_up, i):
+#     if i % 8 == 0 or num_eights(i) > 0:
+#         return not is_up
+#     return is_up
 
+# iterative solution 2
+#     i = 1
+#     x = 1
+#     step = 1
+#     while i < n:
+#         step = next_dir(step, i)
+#         x += step
+#         i += 1
+#     return x
 
+# def next_dir(step,i):
+#     if i % 8 == 0 or num_eights(i) > 0:
+#         return -step
+#     return step
+
+    def helper(result, i, step):
+        if i == n:
+            return n
+        elif i % 8 == 0 or num_eights(i) > 0:
+            return helper(result - step, i + 1, -step)
         else:
+            return helper(result + step, i + 1, step)
+    return helper(1, 1, 1)
 
+# Alternate solution
+# def pingpong_alt(n):
+#     if n <= 8:
+#         return n
+#     return direction(n) + pingpong_alt(n-1)
 
+# def direction(n):
+#     if n < 8:
+#         return 1
+#     if (n-1) % 8 == 0 or num_eights(n-1) > 0:
+#         return -1 * direction(n-1)
+#     return direction(n-1)
 
 
 def get_larger_coin(coin):
@@ -135,3 +180,14 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(change, smallest_coin):
+        if change == 0:
+            return 1
+        if change < 0:
+            return 0
+        if smallest_coin == None:
+            return 0
+        without_coin = helper(change, get_larger_coin(smallest_coin))
+        with_coin = helper(change - smallest_coin, smallest_coin)
+        return without_coin + with_coin
+    return helper(change, 1)
