@@ -22,7 +22,7 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     score = []
-    for _ in range(1, num_rolls + 1):
+    for _ in range(num_rolls):
         score.append(dice())
     if 1 in score:
         roll_result = 1
@@ -269,7 +269,12 @@ def make_averaged(original_function, trials_count=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def averaged_function(*args):
+        count = 0
+        for _ in range(trials_count):
+            count += original_function(*args)
+        return count / trials_count
+    return averaged_function
     # END PROBLEM 8
 
 
@@ -283,7 +288,14 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    max_score = 0
+    num_rolls = 0
+    avg = make_averaged(roll_dice, trials_count)
+    for i in range(1,11):
+        score_temp = avg(i,dice)
+        if score_temp > max_score:
+            max_score, num_rolls = score_temp, i
+    return num_rolls
     # END PROBLEM 9
 
 
@@ -324,7 +336,10 @@ def picky_piggy_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     returns NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Remove this line once implemented.
+    if picky_piggy(opponent_score) >= cutoff:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
@@ -334,7 +349,10 @@ def hog_pile_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     Otherwise, it returns NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 6  # Remove this line once implemented.
+    if score + picky_piggy(opponent_score) == opponent_score:
+        return 0
+    else:
+        return picky_piggy_strategy(score, opponent_score, cutoff, num_rolls)
     # END PROBLEM 11
 
 
