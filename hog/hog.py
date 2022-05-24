@@ -135,12 +135,11 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
         else:
             roll_number = strategy1(score1, score0)
             score1 += take_turn(roll_number, score0, dice)
-            score1 = score1 + hog_pile(score1, score0)
+            score1 += hog_pile(score1, score0)
         who = next_player(who)
     # END PROBLEM 5
-    # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
-    "*** YOUR CODE HERE ***"
+        say = say(score0, score1)
     # END PROBLEM 6
     return score0, score1
 
@@ -218,7 +217,19 @@ def announce_highest(who, last_score=0, running_high=0):
     """
     assert who == 0 or who == 1, 'The who argument should indicate a player.'
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    def say(score0, score1):
+        if who == 0:
+            if score0 - last_score > running_high:
+                print(score0 - last_score, \
+                    "point(s)! That's a record gain for Player 0!")
+            return announce_highest(who, score0, max(score0 - last_score,running_high))
+            
+        else:
+            if score1 - last_score > running_high:
+                print(score1 - last_score, \
+                    "point(s)! That's a record gain for Player 1!")
+            return announce_highest(who, score1, max(score1 - last_score,running_high))
+    return say
     # END PROBLEM 7
 
 
