@@ -7,52 +7,47 @@ test = {
         {
           'code': r"""
           >>> picky_piggy(0)
-          c42887e7b9ffe8fc26bb57b61329f916
-          # locked
+          7
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> picky_piggy(1)
-          43d176e102c8d95338faf8791aa509b3
-          # locked
+          1
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> picky_piggy(2)
-          edcbd82ba98a8122be244fa325c62071
-          # locked
+          4
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> picky_piggy(5)
-          26f5762c932a578994ea1c8fc7fa6c02
-          # locked
+          5
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> a = picky_piggy(24)
           >>> a # check that the value is being returned, not printed
-          c42887e7b9ffe8fc26bb57b61329f916
-          # locked
+          7
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {

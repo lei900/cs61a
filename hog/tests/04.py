@@ -7,72 +7,65 @@ test = {
         {
           'code': r"""
           >>> hog_pile(25, 43)
-          962aea5f59fc55bd65ccacf4603c8f22
-          # locked
+          0
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> hog_pile(32, 33)
-          962aea5f59fc55bd65ccacf4603c8f22
-          # locked
+          0
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> hog_pile(7, 7)
-          c42887e7b9ffe8fc26bb57b61329f916
-          # locked
+          7
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> hog_pile(26, 26)
-          d234f38b1fd45e21dcab1ed25bde7266
-          # locked
+          26
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> hog_pile(23, 23)
-          d4e635123d3bf027954fb7a6e4ca8cdb
-          # locked
+          23
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> hog_pile(193, 42)
-          962aea5f59fc55bd65ccacf4603c8f22
-          # locked
+          0
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
           'code': r"""
           >>> a = hog_pile(187, 187)
           >>> a # check that the value is being returned, not printed
-          43c964966d827257fe87fa130c9abbac
-          # locked
+          187
           """,
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'multiline': False
         },
         {
