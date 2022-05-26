@@ -4,9 +4,6 @@ from select import select
 from utils import lower, split, remove_punctuation, lines_from_file
 from ucb import main, interact, trace
 from datetime import datetime
-#test
-#test2
-
 
 ###########
 # Phase 1 #
@@ -326,7 +323,14 @@ def fastest_words(match):
     player_indices = range(len(get_times(match)))  # contains an *index* for each player
     word_indices = range(len(get_words(match)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
-    
+    fastest_word = [[] for player_num in player_indices]
+    for word_index in word_indices:
+        word_time = [time(match,player_num, word_index) for player_num in player_indices]
+        # print("DEBUG: word_time:", word_time)
+        # print("DEBUG: index:",word_time.index(min(word_time)))
+        fastest_word[word_time.index(min(word_time))].append(word_at(match,word_index))
+        # print("DEBUG: index:",fastest_word)
+    return fastest_word
     # END PROBLEM 10
 
 
