@@ -1,6 +1,7 @@
 """CS 61A presents Ants Vs. SomeBees."""
 
 import random
+from turtle import distance
 from ucb import main, interact, trace
 from collections import OrderedDict
 
@@ -179,6 +180,9 @@ class ThrowerAnt(Ant):
     damage = 1
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
     food_cost = 3
+    min_range = 0
+    max_range = float('inf')
+
 
     def nearest_bee(self):
         """Return the nearest Bee in a Place that is not the HIVE, connected to
@@ -187,7 +191,14 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
-        return random_bee(self.place.bees)  # REPLACE THIS LINE
+        next_place = self.place
+        distance = 0
+        while not next_place.is_hive and next_place != None and distance <= self.max_range:
+                if len(next_place.bees) != 0 and distance >= self.min_range:
+                    return random_bee(next_place.bees)
+                next_place = next_place.entrance
+                distance += 1
+        return None
         # END Problem 3 and 4
 
     def throw_at(self, target):
@@ -217,8 +228,10 @@ class ShortThrower(ThrowerAnt):
     name = 'Short'
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
+    min_range = 0
+    max_range = 3
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True  # Change to True to view in the GUI
     # END Problem 4
 
 
@@ -228,8 +241,10 @@ class LongThrower(ThrowerAnt):
     name = 'Long'
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
+    min_range = 5
+    max_range = float('inf')
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 
