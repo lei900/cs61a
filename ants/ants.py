@@ -381,7 +381,22 @@ class BodyguardAnt(ContainerAnt):
     # END Problem 8
 
 # BEGIN Problem 9
-# The TankAnt class
+class TankAnt(ContainerAnt):
+    name = 'Tank'
+    food_cost = 6
+    damage = 1
+
+    def __init__(self):
+        super().__init__(health=2)
+
+    def action(self, gamestate):
+        # BEGIN Problem 8
+        target_bees = self.place.bees[:]
+        for bee in target_bees:
+            bee.reduce_health(self.damage)
+        super().action(gamestate)
+
+    implemented = True
 # END Problem 9
 
 
