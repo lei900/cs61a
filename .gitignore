@@ -1,1 +1,8 @@
 solutions
+*.ok
+ok
+.ok_history
+.ok_storage.bak
+.ok_storage.dat
+.ok_storage.dir
+.ok_messages

@@ -495,6 +495,9 @@ class Bee(Insect):
     damage = 1
     # OVERRIDE CLASS ATTRIBUTES HERE
     is_waterproof = True
+    is_scared = False
+    is_slowed = False
+    has_been_scared = False
 
     def sting(self, ant):
         """Attack an ANT, reducing its health by 1."""
@@ -519,8 +522,17 @@ class Bee(Insect):
         gamestate -- The GameState, used to access game state information.
         """
         destination = self.place.exit
+        # if not self.scared:
+        #     destination = self.place.exit
+        # elif self.place.entrance.is_hive:
+        #     destination = None
+        # else:
+        #     destination = self.place.entrance
 
         # Extra credit: Special handling for bee direction
+        # if self.is_slowed:
+        #     destination = None
+        #     if gamestate.time % 2 == 0:
         if self.blocked():
             self.sting(self.place.ant)
         elif self.health > 0 and destination is not None:
@@ -537,7 +549,10 @@ class Bee(Insect):
     def slow(self, length):
         """Slow the bee for a further LENGTH turns."""
         # BEGIN Problem EC
-        "*** YOUR CODE HERE ***"
+        # self.is_slowed = True
+        # for _ in range(length):
+        #     self.action
+        # self.is_slowed = False
         # END Problem EC
 
     def scare(self, length):
@@ -546,7 +561,18 @@ class Bee(Insect):
         go backwards LENGTH times.
         """
         # BEGIN Problem EC
-        "*** YOUR CODE HERE ***"
+        # while length:
+        #     self.action(gamestate)
+        #     # if self.is_slowed and gamestate.time % 2 == 0:
+        #     length -= 1
+        # self.has_been_scared = False
+
+"""
+1. If the bee is already right next to the Hive and cannot go back further, it should not move.
+2. Bees remain scared until they have tried to back away twice. 
+3. Bees cannot try to back away if they are slowed and gamestate.time is odd.
+4. Once a bee has been scared once, it can't be scared ever again.
+"""
         # END Problem EC
 
 
@@ -583,7 +609,7 @@ class SlowThrower(ThrowerAnt):
     name = 'Slow'
     food_cost = 4
     # BEGIN Problem EC
-    implemented = False   # Change to True to view in the GUI
+    implemented = False  # Change to True to view in the GUI
     # END Problem EC
 
     def throw_at(self, target):
@@ -602,7 +628,9 @@ class ScaryThrower(ThrowerAnt):
 
     def throw_at(self, target):
         # BEGIN Problem EC
-        "*** YOUR CODE HERE ***"
+        if target and not target.has_been_scared:
+            target.is_scared = True
+            target.scare(2)
         # END Problem EC
 
 
