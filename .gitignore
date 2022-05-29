@@ -1,8 +1,12 @@
 solutions
 *.ok
 ok
+.ok*
 .ok_history
 .ok_storage.bak
 .ok_storage.dat
 .ok_storage.dir
 .ok_messages
+__pycache__
+__pycache__/*
+.DS_Store
